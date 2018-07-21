@@ -13,14 +13,14 @@ const path = require('path');
 module.exports = {
 	entry: {
 		main: [
-			'./src/ts/main.ts'
+      './wwwroot/src/ts/main.ts'
 		]
 	},
 	output: {
-        filename: './dist/[name].bundle.js',
-        path: path.resolve(__dirname, 'wwwroot/dist'),
-        filename: '[name].bundle.js',
-		libraryTarget: 'amd'
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'wwwroot/dist'),
+    publicPath: '/dist/',
+    libraryTarget: 'amd'
 	},
 	module: {
 		loaders: [

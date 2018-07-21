@@ -6,20 +6,19 @@ const path = require('path');
 module.exports = {
 	entry: {
 		main: [
-		  './src/ts/main.ts'
+		  './wwwroot/src/ts/main.ts'
 		]
 	},
 	output: {
-		filename: './dist/[name].bundle.js',
-        path: path.resolve(__dirname, 'wwwroot/dist'),
-        publicPath: '/dist/' 
-        libraryTarget: 'amd',
+		filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'wwwroot/dist'),
+    publicPath: '/dist/'
 	},
 	module: {
 		loaders: [
 		{
 			test: /\.json$/,
-            include: '/src/ts/',
+      include: '/wwwroot/ts/',
 			loader: 'json-loader'
 		}
 		],

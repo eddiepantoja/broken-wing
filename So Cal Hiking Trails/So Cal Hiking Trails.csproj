@@ -12,8 +12,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="src\ts\main.ts" />
-    <None Remove="src\ts\sw.ts" />
+    <None Remove="wwwroot\src\ts\main.ts" />
+    <None Remove="wwwroot\src\ts\sw.ts" />
     <None Remove="webpack.config.js" />
   </ItemGroup>
 
@@ -35,13 +35,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="src\ts\main.ts" />
-    <TypeScriptCompile Include="src\ts\sw.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\main.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\sw.ts" />
     <TypeScriptCompile Include="tslint.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\dist\" />
   </ItemGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
     <TypeScriptTarget>ES5</TypeScriptTarget>
