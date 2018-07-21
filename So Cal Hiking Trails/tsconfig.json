@@ -3,6 +3,8 @@
     "noImplicitAny": false,
     "noEmitOnError": true,
     "removeComments": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "sourceMap": true,
     "target": "es5"
   },

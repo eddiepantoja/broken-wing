@@ -11,14 +11,15 @@ module.exports = {
 	},
 	output: {
 		filename: './dist/[name].bundle.js',
-    path: path.resolve(__dirname, 'wwwroot/dist'),
-		filename: '[name].bundle.js',
-		libraryTarget: 'amd'
+        path: path.resolve(__dirname, 'wwwroot/dist'),
+        publicPath: '/dist/' 
+        libraryTarget: 'amd',
 	},
 	module: {
 		loaders: [
 		{
 			test: /\.json$/,
+            include: '/src/ts/',
 			loader: 'json-loader'
 		}
 		],

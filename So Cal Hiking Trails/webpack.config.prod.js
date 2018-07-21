@@ -17,9 +17,9 @@ module.exports = {
 		]
 	},
 	output: {
-    filename: './dist/[name].bundle.js',
-    path: path.resolve(__dirname, 'wwwroot/dist'),
-    filename: '[name].bundle.js',
+        filename: './dist/[name].bundle.js',
+        path: path.resolve(__dirname, 'wwwroot/dist'),
+        filename: '[name].bundle.js',
 		libraryTarget: 'amd'
 	},
 	module: {
