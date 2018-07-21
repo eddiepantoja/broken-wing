@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using So_Cal_Hiking_Trails.Data;
 using So_Cal_Hiking_Trails.Models;
 using So_Cal_Hiking_Trails.Services;
+using Microsoft.AspNetCore.SpaServices.Webpack;
 
 namespace So_Cal_Hiking_Trails
 {
@@ -47,6 +48,10 @@ namespace So_Cal_Hiking_Trails
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
+
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {  
+                    HotModuleReplacement = true  
+                }); 
             }
             else
             {
@@ -59,7 +64,12 @@ namespace So_Cal_Hiking_Trails
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
+				routes.MapRoute(
+					name: "map",
+					template: "map/{action=Index}/{id?}",
+					defaults: new { controller = "Map" });
+
+				routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
