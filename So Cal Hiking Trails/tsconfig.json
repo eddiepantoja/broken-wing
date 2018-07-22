@@ -1,15 +1,23 @@
 {
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "noEmitOnError": true,
-    "removeComments": false,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "sourceMap": true,
-    "target": "es5"
-  },
-  "exclude": [
-    "node_modules",
-    "wwwroot"
-  ]
+	"compilerOptions": {
+		"noImplicitAny": false,
+		"noEmitOnError": true,
+		"removeComments": false,
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"outDir": "./wwwroot/dist/",
+		"sourceMap": true,
+		"module": "commonjs",
+		"target": "es5",
+		"types": [ "arcgis-js-api", "dojo" ],
+		"typeRoots": [ "./node_modules/@types" ],
+		"jsx": "react",
+		"reactNamespace": "jsxFactory"
+	},
+	"include": [
+		"./wwwroot/src/**/*"
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

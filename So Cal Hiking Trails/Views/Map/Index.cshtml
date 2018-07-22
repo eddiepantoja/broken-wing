@@ -4,9 +4,21 @@
 }
 
 @section Scripts {
-	<script src="~/dist/main.bundle.js"></script>
+	<!--load ArcGIS API for JavaScript-->
+	<script>
+		var dojoConfig = {
+			has: {
+				"esri-promise-compatibility": 1
+			},
+			async: true
+		};
+	</script>
+	<script type='text/javascript' rel=preload src='https://js.arcgis.com/4.7/'></script>
+	<script>
+		require(['./dist/main.bundle.js'], function (main) { });
+	</script>
 }
 
 <h2>Map</h2>
 
-<p>Hello from our View Template!</p>
+<div id='scenePanel'></div>

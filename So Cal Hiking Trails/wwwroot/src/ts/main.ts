@@ -1,3 +1,16 @@
-﻿var message = () => "Hello World!";  
+﻿/* entry point for the application */
 
-alert(message);
+import "../style/reset.scss";
+import "../style/style.scss";
+
+import esriConfig = require("esri/config");
+esriConfig.request.useIdentity = false;
+
+import State from './State';
+import deviceUtils from "./ui/deviceUtils";
+import SceneElement from "./scene/SceneElement";
+import trailManager from "./data/trailManager";
+
+const state = new State();
+const sceneElement = new SceneElement(state);
+trailManager.initTrails(state);
