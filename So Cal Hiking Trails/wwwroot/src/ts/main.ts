@@ -6,4 +6,11 @@ import "../style/style.scss";
 import esriConfig = require("esri/config");
 esriConfig.request.useIdentity = false;
 
-console.log('hello')
+import State from './State';
+import deviceUtils from "./ui/deviceUtils";
+import SceneElement from "./scene/SceneElement";
+import trailManager from "./data/trailManager";
+
+const state = new State();
+const sceneElement = new SceneElement(state);
+trailManager.initTrails(state);

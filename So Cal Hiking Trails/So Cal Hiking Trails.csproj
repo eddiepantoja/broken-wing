@@ -6,6 +6,17 @@
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\src\ts\config.ts" />
+    <Content Remove="wwwroot\src\ts\data\Trail.ts" />
+    <Content Remove="wwwroot\src\ts\data\trailManager.ts" />
+    <Content Remove="wwwroot\src\ts\scene\SceneElement.ts" />
+    <Content Remove="wwwroot\src\ts\scene\utils.ts" />
+    <Content Remove="wwwroot\src\ts\State.ts" />
+    <Content Remove="wwwroot\src\ts\types.d.ts" />
+    <Content Remove="wwwroot\src\ts\ui\deviceUtils.ts" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
@@ -17,6 +28,17 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.2" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="wwwroot\src\ts\config.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\data\Trail.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\data\trailManager.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\scene\SceneElement.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\scene\utils.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\State.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\types.d.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\ui\deviceUtils.ts" />
   </ItemGroup>
 
 </Project>
