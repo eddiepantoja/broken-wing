@@ -1,4 +1,4 @@
-﻿/* This app can be configured by changing the variables
+/* This app can be configured by changing the variables
 in this file.
 Webscene:
  - copy the webscene that I use: http://www.arcgis.com/home/item.html?id=d0580bb5df3840d384bda44b6ddeb54e
@@ -21,10 +21,10 @@ Colors:
 
 export default {
   scene: {
-    websceneItemId: "d0580bb5df3840d384bda44b6ddeb54e"
+    websceneItemId: "4a2b17ab48624f539cc76fee77be7547"
   },
   data: {
-    trailsServiceUrl: "https://services2.arcgis.com/cFEFS0EWrhfDeVw9/arcgis/rest/services/SwissNationalParkTrails/FeatureServer/0",
+    trailsServiceUrl: "https://services9.arcgis.com/2PfZYwKwT9PUnunM/arcgis/rest/services/so_cal_hiking_trails_0/FeatureServer/0",
     trailAttributes: {
       name: "Name",
       id: "RouteId",
