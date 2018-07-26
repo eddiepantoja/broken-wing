@@ -40,7 +40,7 @@ export default {
     }
   },
   colors: {
-    defaultTrail: "#db5353",
+    defaultTrail: "#BD1E1E",
     selectedTrail: "#f9a352"
   },
   flickrApiKey: ""
