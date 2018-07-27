@@ -19,7 +19,7 @@ export function getTrailRenderer(): UniqueValueRenderer {
 // function for creating symbols for trails when they are selected or not
 function createTrailSymbol(options) {
   const color = options.selection ? config.colors.selectedTrail : config.colors.defaultTrail;
-  const size = options.selection ? 8 : 6;
+  const size = options.selection ? 4 : 2;
 
   return new LineSymbol3D({
     symbolLayers: [
