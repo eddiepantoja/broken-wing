@@ -1,4 +1,4 @@
-﻿import config from "../config";
+import config from "../config";
 import * as UniqueValueRenderer from "esri/renderers/UniqueValueRenderer";
 import * as LineSymbol3D from "esri/symbols/LineSymbol3D";
 import * as LineSymbol3DLayer from "esri/symbols/LineSymbol3DLayer";
@@ -18,9 +18,8 @@ export function getTrailRenderer(): UniqueValueRenderer {
 
 // function for creating symbols for trails when they are selected or not
 function createTrailSymbol(options) {
-
   const color = options.selection ? config.colors.selectedTrail : config.colors.defaultTrail;
-  const size = options.selection ? 4 : 2;
+  const size = options.selection ? 8 : 6;
 
   return new LineSymbol3D({
     symbolLayers: [
@@ -32,7 +31,6 @@ function createTrailSymbol(options) {
       })
     ]
   });
-
 }
 
 export function getLabelingInfo(options) {
@@ -50,7 +48,6 @@ export function getLabelingInfo(options) {
 }
 
 export function createLabelClass(options) {
-
   const color = (options.selection) ? config.colors.selectedTrail : config.colors.defaultTrail;
 
   const labelClass = new LabelClass({

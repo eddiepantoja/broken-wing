@@ -1,6 +1,5 @@
-﻿/* entry point for the application */
+/* entry point for the application */
 
-import "../style/reset.scss";
 import "../style/style.scss";
 
 import esriConfig = require("esri/config");

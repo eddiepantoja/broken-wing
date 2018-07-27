@@ -1,12 +1,15 @@
 var serviceWorkerOption = {
   "assets": [
-    "/wwwroot/dist/main.bundle.js"
+    "/wwwroot/dist/16de7792c9f41ec06c93.hot-update.json",
+    "/wwwroot/dist/main.bundle.js",
+    "/wwwroot/dist/0.2094e55b32d1a5729051.hot-update.js",
+    "/wwwroot/dist/2094e55b32d1a5729051.hot-update.json"
   ]
 };
         
         /******/ (function(modules) { // webpackBootstrap
 /******/ 	var hotApplyOnUpdate = true;
-/******/ 	var hotCurrentHash = "632537d72e0daf5eeb8b"; // eslint-disable-line no-unused-vars
+/******/ 	var hotCurrentHash = "58c4c8b7ee66bfcc012b"; // eslint-disable-line no-unused-vars
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule; // eslint-disable-line no-unused-vars
@@ -186,7 +189,7 @@ var serviceWorkerOption = {
 /******/ 				};
 /******/ 			});
 /******/ 			hotUpdate = {};
-/******/ 			var chunkId = 0;
+/******/ 			var chunkId = 1;
 /******/ 			{ // eslint-disable-line no-lone-blocks
 /******/ 				/*globals chunkId */
 /******/ 				hotEnsureUpdateChunk(chunkId);
