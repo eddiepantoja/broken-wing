@@ -33,6 +33,15 @@ function createTrailSymbol(options) {
   });
 }
 
+export function getUniqueValueInfos(options) {
+  if (options.selection) {
+    return [{
+      value: options.selection,
+      symbol: createTrailSymbol(options)
+    }];
+  }
+}
+
 export function getLabelingInfo(options) {
   if (options.selection) {
     return [

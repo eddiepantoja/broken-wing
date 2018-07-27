@@ -1,5 +1,5 @@
-﻿import config from "../config";
-import { getTrailRenderer, getLabelingInfo } from "./utils";
+import config from "../config";
+import { getTrailRenderer, getLabelingInfo, getUniqueValueInfos  } from "./utils";
 import * as domConstruct from "dojo/dom-construct";
 import * as dom from "dojo/dom";
 import * as on from "dojo/on";
@@ -24,7 +24,6 @@ import { State } from "../types";
 esriConfig.request.corsEnabledServers.push("wtb.maptiles.arcgis.com");
 
 export default class SceneElement {
-
   state: State;
   view: SceneView;
   trailsLayer: FeatureLayer;
@@ -46,6 +45,15 @@ export default class SceneElement {
 
     (<any>window).view = this.view;
 
+    state.watch("selectedTrailId", (value, oldValue) => {
+      if (oldValue) {
+        this.unselectFeature(oldValue);
+      }
+      if (value) {
+        this.selectFeature(value);
+      }
+    });
+
     state.watch("device", () => {
       this.setViewPadding();
     });
@@ -55,6 +63,7 @@ export default class SceneElement {
     });
   }
 
+  // Initialize view
   private initView() {
     const webscene = new WebScene({
       portalItem: {
@@ -108,6 +117,7 @@ export default class SceneElement {
     return view;
   }
 
+  // Creates padding for mobile
   private setViewPadding() {
     if (this.state.device === "mobilePortrait") {
       this.view.padding = {
@@ -123,21 +133,7 @@ export default class SceneElement {
     }
   }
 
-  private initTrailLayer() {
-    return new FeatureLayer({
-      url: config.data.trailsServiceUrl,
-      title: "So Cal Hiking Trails",
-      outFields: ["*"],
-      renderer: getTrailRenderer(),
-      elevationInfo: {
-        mode: "on-the-ground"
-      },
-      labelsVisible: true,
-      popupEnabled: false,
-      labelingInfo: getLabelingInfo({ selection: null })
-    })
-  }
-
+  // Initialize Layer
   private initTrailsLayer() {
     return new FeatureLayer({
       url: config.data.trailsServiceUrl,
@@ -153,6 +149,7 @@ export default class SceneElement {
     });
   }
 
+  // Set Basemap
   private setCurrentBasemap(id) {
     const basemapGroup = <GroupLayer>this.view.map.layers.filter((layer) => {
       return (layer.title === "Basemap");
@@ -168,14 +165,14 @@ export default class SceneElement {
     activateLayer.visible = true;
   }
 
+  // On Click functionality
   private onViewClick(event) {
-
     // check if the user is online
     if (this.state.online) {
+      this.showLoadingIcon(event);
       this.view.hitTest(event)
         .then((response) => {
           const result = response.results[0];
-
 
           const query = this.trailsLayer.createQuery();
           query.geometry = result.mapPoint;
@@ -189,12 +186,64 @@ export default class SceneElement {
               } else {
                 this.state.setSelectedTrailId(null);
               }
+              this.removeLoadingIcon();
             })
             .catch(err => console.log(err));
-         
         });
     }
   }
 
+  // Click loading icon
+  private showLoadingIcon(event) {
+    domConstruct.create("span", {
+      class: "fa fa-spinner fa-spin",
+      id: "loadingIcon",
+      style: {
+        position: "absolute",
+        fontSize: "30px",
+        top: `${event.screenPoint.y - 15}px`,
+        left: `${event.screenPoint.x - 15}px`
+      }
+    }, document.body);
+  }
 
+  // Remove icon on load
+  private removeLoadingIcon() {
+    domConstruct.destroy("loadingIcon");
+  }
+
+  // Update selected trail
+  private selectFeature(featureId): void {
+    const renderer = (<UniqueValueRenderer>this.trailsLayer.renderer).clone();
+    renderer.uniqueValueInfos = getUniqueValueInfos({ selection: featureId });
+    this.trailsLayer.renderer = renderer;
+
+    this.trailsLayer.labelingInfo = getLabelingInfo({ selection: featureId });
+
+    const selectedTrail = this.state.trails.filter((trail) => {
+      return (trail.id === featureId);
+    })[0];
+
+    this.view.goTo(
+      { target: selectedTrail.geometry, tilt: 60 },
+      { speedFactor: 0.5 }
+    );
+
+    if (this.state.online) {
+      selectedTrail.setElevationValuesFromService();
+    }
+  }
+
+  // Remove preivously selected feature
+  private unselectFeature(oldId): void {
+    const renderer = (<UniqueValueRenderer>this.trailsLayer.renderer).clone();
+    renderer.uniqueValueInfos = [];
+    this.trailsLayer.renderer = renderer;
+
+    this.trailsLayer.labelingInfo = getLabelingInfo({ selection: null });
+
+    const selectedTrail = this.state.trails.filter((trail) => {
+      return (trail.id === oldId);
+    })[0];
+  }
 }
