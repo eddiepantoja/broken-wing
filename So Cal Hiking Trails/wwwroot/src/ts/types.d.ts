@@ -6,7 +6,10 @@ import SceneView = require("esri/views/SceneView");
 export type Device = ("mobilePortrait" | "desktop");
 
 export interface State extends Accessor {
+  displayLoading: boolean;
+  selectedTrailId: number;
   setSelectedTrailId: (id: number) => void;
+  visiblePanel: "selectionPanel" | "detailPanel" | "basemapPanel";
   device: Device;
   currentBasemapId: string;
   view: SceneView;

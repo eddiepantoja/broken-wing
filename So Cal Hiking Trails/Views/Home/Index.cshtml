@@ -18,94 +18,102 @@
 	</script>
 }
 
-<section class="row">
-	<div class="col-xs-12 col-sm-9 col-sm-push-3 col-lg-10 col-lg-push-2">
-		<div id='scenePanel'></div>
-	</div>
-	<aside class="col-xs-12 col-sm-3 col-sm-pull-9 col-lg-2 col-lg-pull-10">
-		<div class="side-panel">
-			<div class="row">
-				<div class="col-sm-12 panel-nav">
-					<div class="btn-group btn-group-justified" role="group" aria-label="...">
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-default">Hikes</button>
-						</div>
-						<div class="btn-group" role="group">
-							<button type="button" class="btn btn-default btn-primary">Details</button>
+	<section class="row">
+		<aside class="col-4">
+			<div class="side-panel menuPanel">
+				<div class="row trail-nav mt-3 mb-3">
+					<div class="col-12">
+						<div class="menuTabs btn-group d-flex visible-panel pl-3 pr-3" role="group" aria-label="Trail Navigation">
+							<button type="button" class="btn btn-default w-100 btn-primary" data-tab='selectionPanel'>Hikes</button>
+							<button type="button" class="btn btn-default w-100" data-tab='detailPanel'>Details</button>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div class="row trail-details">
-				<div class="col-sm-12">
-					<div class="thumbnail">
-						<div class="image-container">
-							<div class="content-overlay">
-								<div class="trail-name">
-									<h3>Zanja Peak Trail</h3>
-								</div>
-								<div class="location">
-									Yucaipa, California
-								</div>
-							</div>
+				<div id='selectionPanel' class='d-none'>
+					<div id='trailsPanel'></div>
+					<button aria-label='Remove trail button' class='removeSelected' disabled>Remove selected trail</button>
+					<div id='filterPanel'></div>
+				</div>
+				<div class="col-12 d-none" id='detailPanel'>
+					<div class="card mb-3">
+						<img class="card-img" src="~/images/zanja-peak.jpg" alt="Card image">
+						<div class="card-img-overlay text-white mt-auto">
+							<h3 class="card-title" id="detailTitle"></h3>
+							<p class="card-text">Yucaipa, California</p>
 						</div>
-						<div class="caption">
-							<p>Zanja Peak Trail is a 4.3 mile heavily trafficked loop trail located near Yucaipa, California that features beautiful wild flowers and is rated as difficult. The trail offers a number of activity options and is accessible year-round. Dogs are also able to use this trail but must be kept on leash.</p>
-							<hr />
-							<div class="row">
-								<div class="col-xs-6">
-									Distance <br />
-									4.3 miles
+						<div class="card-body">
+							<p class="card-text" id="detailDescription"></p>
+							<div class="card-text row">
+								<div class="col-6">
+									<small class="text-muted">Distance<br />4.3 miles</small>
 								</div>
-								<div class="col-xs-6">
-									Elevation <br />
-									1,246 feet
+								<div class="col-6">
+									<small class="text-muted">Elevation<br />1,246 feet</small>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>
-			<div class="row trail-reviews">
-				<div class="col-xs-12">
-					<ul class="nav nav-tabs" style="margin-bottom: 15px">
-						<li role="presentation" class="active"><a href="#">Reviews</a></li>
-						<li role="presentation"><a href="#">Photos</a></li>
-					</ul>
-					<p style="text-align: center;">
-						Share your experiences to help other people learn more about this trail:
-					</p>
-					<div style="margin-bottom: 15px">
-						<button class="btn btn-primary" type="button">
-							Write Review
-						</button>
-						<button class="btn btn-primary" type="button">
-							Upload Photos
-						</button>
-					</div>
-					<ul class="nav-links" style="margin-bottom: 15px;">
-						<li role="presentation" class="active"><a href="#">Newest First</a></li>
-						<li role="presentation"><a href="#">Oldest First</a></li>
-					</ul>
+					<div class="row trail-reviews mb-3">
+						<div class="col-12">
+							<ul class="nav nav-tabs" style="margin-bottom: 15px">
+								<li role="presentation" class="nav-item">
+									<a class="nav-link active" href="#">Reviews</a>
+								</li>
+								<li role="presentation" class="nav-item">
+									<a class="nav-link" href="#">Photos</a>
+								</li>
+							</ul>
+							<p style="text-align: center;">
+								Share your experiences to help other people learn more about this trail:
+							</p>
+							<div style="margin-bottom: 15px; text-align:center;">
+								<button class="btn btn-primary" type="button">
+									Write Review
+								</button>
+								<button class="btn btn-primary" type="button">
+									Upload Photos
+								</button>
+							</div>
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a active" href="#">Newest First</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#">Oldest First</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#">Highest Rating</a>
+								</li>
+								<li class="list-inline-item">
+									<a href="#">Lowest Rating</a>
+								</li>
+							</ul>
 
-					<div class="panel panel-default" style="margin-bottom: 15px">
-						<div class="panel-heading">
-							<a href="#">Eddie Pantoja</a>
-						</div>
-						<div class="panel-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-						</div>
-					</div>
-					<div class="panel panel-default" style="margin-bottom: 15px">
-						<div class="panel-heading">
-							<a href="#">Eddie Pantoja</a>
-						</div>
-						<div class="panel-body">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+							<div class="card mb-3">
+								<div class="card-header">
+									Eddie Pantoja
+								</div>
+								<div class="card-body">
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+
+							<div class="card mb-3">
+								<div class="card-header">
+									Eddie Pantoja
+								</div>
+								<div class="card-body">
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+								</div>
+							</div>
+
 						</div>
 					</div>
 				</div>
 			</div>
+		</aside>
+		<div class="col-8">
+			<div id='scenePanel'></div>
 		</div>
-	</aside>
-</section>
+	</section>

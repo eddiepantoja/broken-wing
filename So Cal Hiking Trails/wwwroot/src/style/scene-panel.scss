@@ -1,10 +1,14 @@
 #scenePanel {
-	height: calc(100vh - 107px);
+	height: calc(100vh - 130px);
 	width: 100%;
 	z-index: 0;
 }
 
 /******** Esri popups *************/
+
+.esri-component.esri-popup {
+	display: none;
+}
 
 .esri-popup__header-buttons, .esri-popup__feature-buttons {
 	display: none;

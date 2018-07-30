@@ -14,11 +14,15 @@
     <Content Remove="wwwroot\src\ts\scene\utils.ts" />
     <Content Remove="wwwroot\src\ts\State.ts" />
     <Content Remove="wwwroot\src\ts\types.d.ts" />
+    <Content Remove="wwwroot\src\ts\ui\DetailPanel.ts" />
     <Content Remove="wwwroot\src\ts\ui\deviceUtils.ts" />
+    <Content Remove="wwwroot\src\ts\ui\MenuPanel.ts" />
+    <Content Remove="wwwroot\src\ts\ui\SelectionPanel.ts" />
   </ItemGroup>
 
 
   <ItemGroup>
+    <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.4" PrivateAssets="All" />
@@ -38,7 +42,10 @@
     <TypeScriptCompile Include="wwwroot\src\ts\scene\utils.ts" />
     <TypeScriptCompile Include="wwwroot\src\ts\State.ts" />
     <TypeScriptCompile Include="wwwroot\src\ts\types.d.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\ui\DetailPanel.ts" />
     <TypeScriptCompile Include="wwwroot\src\ts\ui\deviceUtils.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\ui\MenuPanel.ts" />
+    <TypeScriptCompile Include="wwwroot\src\ts\ui\SelectionPanel.ts" />
   </ItemGroup>
 
 </Project>

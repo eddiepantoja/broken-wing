@@ -176,12 +176,13 @@ export default class SceneElement {
 
           const query = this.trailsLayer.createQuery();
           query.geometry = result.mapPoint;
-          query.distance = 200;
+          query.distance = 100;
           query.units = "meters";
           query.spatialRelationship = "intersects";
           this.trailsLayer.queryFeatures(query)
             .then((results) => {
               if (results.features.length > 0) {
+                console.log(JSON.stringify(results));
                 this.state.setSelectedTrailId(results.features[0].attributes[config.data.trailAttributes.id]);
               } else {
                 this.state.setSelectedTrailId(null);
@@ -226,11 +227,11 @@ export default class SceneElement {
 
     this.view.goTo(
       { target: selectedTrail.geometry, tilt: 60 },
-      { speedFactor: 0.5 }
+      { speedFactor: .5 }
     );
 
     if (this.state.online) {
-      selectedTrail.setElevationValuesFromService();
+      // selectedTrail.setElevationValuesFromService();
     }
   }
 
