@@ -20,7 +20,7 @@ export default class SelectionPanel {
   state: State;
   container: any;
   detailTitle: any;
-  detailInfograph: any;
+  detailMeta: any;
   detailElevationProfile: any;
   detailDescription: any;
 
@@ -29,7 +29,7 @@ export default class SelectionPanel {
     this.trails = trails;
     this.container = dom.byId("detailPanel");
     this.detailTitle = dom.byId("detailTitle");
-    this.detailInfograph = dom.byId("detailInfograph");
+    this.detailMeta = dom.byId("detailMeta");
     this.detailDescription = dom.byId("detailDescription");
     this.detailElevationProfile = dom.byId("detailElevationProfile");
 
@@ -48,28 +48,29 @@ export default class SelectionPanel {
         this.displayAppInfo();
       }
     });
+
   }
 
   emptyDetails() {
     domConstruct.empty(this.detailTitle);
     domConstruct.empty(this.detailDescription);
+    domConstruct.empty(this.detailMeta);
 
     this.displayAppInfo();
   }
 
   displayAppInfo() {
     if (this.state.device === "mobilePortrait") {
-      //this.detailInfograph.innerHTML = "This app shows the hikes in the Swiss National Park. Select a hike on the map to find out more about it.";
+      this.detailMeta.innerHTML = `<div class="col">This app shows hikes in Southern California. Select a hike on the map to find out more about it.</div>`;
     } else {
-      //this.detailInfograph.innerHTML = "Select a hike in the map or in the Hikes panel to see more details about it.";
+      this.detailMeta.innerHTML = `<div class="col">Select a hike in the map or in the Hikes panel to see more details about it.</div>`;
     }
   }
 
   displayInfo(trail: Trail): void {
-    console.log(trail);
-    this.detailTitle.innerHTML = trail.name;
-    //this.createInfograph(trail);
-    this.detailDescription.innerHTML = `${trail.description}`;
+    this.detailTitle.innerHTML = `<h3 class="card-title">${trail.name}<h3>`;
+    this.createTrailMeta(trail);
+    this.detailDescription.innerHTML = `<p class="card-text">${trail.description}<p>`;
 
     // create the elevation profile
     //if (trail.profileData) {
@@ -84,27 +85,13 @@ export default class SelectionPanel {
     //}
   }
 
-  //createinfograph(trail) {
-
-  //  const status = {
-  //    closed: {
-  //      icon: "fa fa-calendar-times-o",
-  //      text: "closed"
-  //    },
-  //    open: {
-  //      icon: "fa fa-calendar-check-o",
-  //      text: "open"
-  //    }
-  //  };
-
-  //  this.detailinfograph.innerhtml = `
-  //    ${trail.ascent ? `<span class="infograph"><span class="fa fa-line-chart" aria-hidden="true"></span> ${trail.ascent} m</span>` : ""}
-  //    ${trail.difficulty ? `<span class="infograph"><span class="fa fa-wrench" aria-hidden="true"></span> ${trail.difficulty}</span>` : ""}
-  //    ${trail.walktime ? `<span class="infograph"><span class="fa fa-clock-o" aria-hidden="true"></span> ${trail.walktime} hr</span>` : ""}
-  //    ${trail.status ? `<span class="infograph"><span class="${status[trail.status].icon}" aria-hidden="true"></span> ${status[trail.status].text}</span>` : ""}
-  //  `;
-
-  //}
+  createTrailMeta(trail) {
+    console.log(trail);
+    this.detailMeta.innerHTML = `
+      ${ trail.ascent ? `<div class="col"><small class="text-muted">Ascent<br>${trail.ascent} ft</small></div>` : ""}
+      ${ trail.walktime ? `<div class="col"><small class="text-muted">Time<br>${trail.walktime} hr</small></div>` : "" }
+    `;
+  }
 
   //createChart(data) {
 
