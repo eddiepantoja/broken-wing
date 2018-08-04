@@ -7,18 +7,24 @@ import * as LabelClass from "esri/layers/support/LabelClass";
 import * as TextSymbol3DLayer from "esri/symbols/TextSymbol3DLayer";
 
 export function getTrailRenderer(): UniqueValueRenderer {
+  // Symbolizes groups of graphics that have matching attributes. 
   return new UniqueValueRenderer({
+    // Attribute field the renderer uses to match unique values or types.
     field: config.data.trailAttributes.id,
+    // Default symbol used to draw a feature whose value is not matched or specified by the renderer. 
     defaultSymbol: createTrailSymbol({
       selection: null
     }),
+    // no unique values associated with the renderer.
     uniqueValueInfos: []
   });
 }
 
-// function for creating symbols for trails when they are selected or not
+// Creats symbols for trails when they are selected or not
 function createTrailSymbol(options) {
+  // Default color for symbols use in the layer.
   const color = options.selection ? config.colors.selectedTrail : config.colors.defaultTrail;
+  // Default size for symbols use in the layer.
   const size = options.selection ? 4 : 2;
 
   return new LineSymbol3D({
@@ -42,6 +48,7 @@ export function getUniqueValueInfos(options) {
   }
 }
 
+// Sets Labeling.
 export function getLabelingInfo(options) {
   if (options.selection) {
     return [
@@ -57,14 +64,18 @@ export function getLabelingInfo(options) {
 }
 
 export function createLabelClass(options) {
+  // Label color.
   const color = (options.selection) ? config.colors.selectedTrail : config.colors.defaultTrail;
 
+  // Expressions, symbols, scale ranges, label priorities, and label placement within layer.
   const labelClass = new LabelClass({
-    symbol: new LabelSymbol3D({
-      symbolLayers: [new TextSymbol3DLayer({
+    // Symbol used for rendering the label.
+    symbol: new LabelSymbol3D({ // 3D Labels
+      symbolLayers: [new TextSymbol3DLayer({ // 3D Labels
         material: {
           color: "white"
         },
+        // halo surrounds the text.
         halo: {
           color: color,
           size: 1
@@ -76,10 +87,11 @@ export function createLabelClass(options) {
         size: 13
       })],
       verticalOffset: {
-        screenLength: 80,
-        maxWorldLength: 2000,
-        minWorldLength: 500
+        screenLength: 80, // The vertical symbol offset in points
+        maxWorldLength: 2000, // maximum vertical offset
+        minWorldLength: 500 // minimum verticle offset
       },
+      // Line collout properties
       callout: {
         type: "line",
         size: 1,
@@ -89,11 +101,14 @@ export function createLabelClass(options) {
         }
       }
     }),
+    // The position of the label
     labelPlacement: "above-center",
+    // Uses name of trail as label
     labelExpressionInfo: {
       expression: `$feature.${config.data.trailAttributes.name}`
     }
   });
+
   if (options.selection) {
     labelClass.where = `${config.data.trailAttributes.id} = ${options.selection}`;
   }

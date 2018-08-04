@@ -11,10 +11,13 @@ import SceneElement from "./scene/SceneElement";
 import trailManager from "./data/trailManager";
 import MenuPanel from "./ui/MenuPanel";
 
+// Init state
 const state = new State();
 
-// Init Trail and create menu
+// Create scene with state proprties
 const sceneElement = new SceneElement(state);
+
+// Init Trail and create menu
 trailManager.initTrails(state)
   .then(() => {
     const menuPanel = new MenuPanel(state);

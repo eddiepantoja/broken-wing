@@ -31,7 +31,7 @@ export default class State extends declared(Accessor) {
   view: SceneView = null;
 
   @property()
-  trails: Array<Trail> = null
+  trails: Array<Trail> = null;
 
   @property()
   online: boolean = true;

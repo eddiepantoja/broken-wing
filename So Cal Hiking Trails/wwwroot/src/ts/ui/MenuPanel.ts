@@ -95,7 +95,6 @@ export default class MenuPanel {
       console.log(displayValue);
       this.container.style.display = (displayValue === "none" || displayValue === "") ? "flex" : "none";
     });
-
   }
 
   private initVisiblePanel() {
