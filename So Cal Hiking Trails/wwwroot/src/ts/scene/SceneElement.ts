@@ -41,6 +41,8 @@ export default class SceneElement {
   constructor(state: State) {
     this.state = state;
     this.view = this.initView(); // Creates ScenceView with buttons.
+    this.state.view = this.view;
+
     this.trailsLayer = this.initTrailsLayer(); // Creates FeatureLayer
     this.view.when(() => { // executes when the instance of the class loads.
       this.view.map.add(this.trailsLayer); // add layer to the view.
@@ -51,7 +53,7 @@ export default class SceneElement {
     });
 
     // NOT SURE WHAT THIS IS DONG. DO MORE REASERCH
-    (<any>window).view = this.view;
+    (<any> window).view = this.view;
 
     // Updates selected trail when state changes.
     state.watch("selectedTrailId", (value, oldValue) => {
@@ -168,7 +170,7 @@ export default class SceneElement {
 
   // Set Basemap
   private setCurrentBasemap(id) {
-    const basemapGroup = <GroupLayer>this.view.map.layers.filter((layer) => {
+    const basemapGroup = <GroupLayer> this.view.map.layers.filter((layer) => {
       return (layer.title === "Basemap");
     }).getItemAt(0);
 
@@ -236,7 +238,7 @@ export default class SceneElement {
 
   // Update selected trail
   private selectFeature(featureId): void {
-    const renderer = (<UniqueValueRenderer>this.trailsLayer.renderer).clone();
+    const renderer = (<UniqueValueRenderer> this.trailsLayer.renderer).clone();
     renderer.uniqueValueInfos = getUniqueValueInfos({ selection: featureId });
     this.trailsLayer.renderer = renderer;
 
@@ -259,7 +261,7 @@ export default class SceneElement {
 
   // Remove preivously selected feature
   private unselectFeature(oldId): void {
-    const renderer = (<UniqueValueRenderer>this.trailsLayer.renderer).clone();
+    const renderer = (<UniqueValueRenderer> this.trailsLayer.renderer).clone();
     renderer.uniqueValueInfos = [];
     this.trailsLayer.renderer = renderer;
 

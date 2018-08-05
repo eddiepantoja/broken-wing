@@ -7,11 +7,11 @@ import * as LabelClass from "esri/layers/support/LabelClass";
 import * as TextSymbol3DLayer from "esri/symbols/TextSymbol3DLayer";
 
 export function getTrailRenderer(): UniqueValueRenderer {
-  // Symbolizes groups of graphics that have matching attributes. 
+  // Symbolizes groups of graphics that have matching attributes.
   return new UniqueValueRenderer({
     // Attribute field the renderer uses to match unique values or types.
     field: config.data.trailAttributes.id,
-    // Default symbol used to draw a feature whose value is not matched or specified by the renderer. 
+    // Default symbol used to draw a feature whose value is not matched or specified by the renderer.
     defaultSymbol: createTrailSymbol({
       selection: null
     }),

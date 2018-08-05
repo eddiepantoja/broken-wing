@@ -64,6 +64,19 @@ export default class SelectionPanel {
     this.detailTitle.innerHTML = `<h3 class="card-title">${trail.name}<h3>`;
     this.createTrailMeta(trail);
     this.detailDescription.innerHTML = `<p class="card-text">${trail.description}<p>`;
+
+    // Create elevation profile.
+    // create the elevation profile
+    if (trail.profileData) {
+      this.createChart(trail.profileData);
+    } else {
+      if (this.state.online) {
+        trail.setElevationValuesFromService()
+          .then(() => {
+            this.createChart(trail.profileData);
+          });
+      }
+    }
   }
 
   // Populates trail meta.
@@ -72,6 +85,10 @@ export default class SelectionPanel {
       ${ trail.ascent ? `<div class="col"><small class="text-muted">Ascent<br>${trail.ascent} ft</small></div>` : ""}
       ${ trail.walktime ? `<div class="col"><small class="text-muted">Time<br>${trail.walktime} hr</small></div>` : "" }
     `;
+  }
+
+  createChart(data) {
+    console.log(data);
   }
 
 }
