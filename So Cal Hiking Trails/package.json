@@ -49,5 +49,5 @@
 		"font-awesome": "^4.7.0",
 		"nouislider": "^11.0.0"
 	}
-, "-vs-binding":{"AfterBuild":["start"]}
+
 }

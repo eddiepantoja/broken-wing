@@ -23,23 +23,6 @@ export default class SelectionPanel {
     this.container = dom.byId("selectionPanel");
 
     this.trailsPanel = dom.byId("trailsPanel");
-
-    on(document.querySelector(".removeSelected"), "click", (evt) => {
-      this.state.setSelectedTrailId(null);
-    });
-
-    state.watch("selectedTrailId", (id) => {
-      if (document.querySelector(".selected")) {
-      }
-      if (id) {
-      }
-      else {
-      }
-    });
   }
 }
 
-interface Extremes {
-  min: number;
-  max: number;
-}

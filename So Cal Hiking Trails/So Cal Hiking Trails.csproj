@@ -15,7 +15,6 @@
     <Content Remove="wwwroot\src\ts\State.ts" />
     <Content Remove="wwwroot\src\ts\types.d.ts" />
     <Content Remove="wwwroot\src\ts\ui\DetailPanel.ts" />
-    <Content Remove="wwwroot\src\ts\ui\deviceUtils.ts" />
     <Content Remove="wwwroot\src\ts\ui\MenuPanel.ts" />
     <Content Remove="wwwroot\src\ts\ui\SelectionPanel.ts" />
   </ItemGroup>
@@ -43,7 +42,6 @@
     <TypeScriptCompile Include="wwwroot\src\ts\State.ts" />
     <TypeScriptCompile Include="wwwroot\src\ts\types.d.ts" />
     <TypeScriptCompile Include="wwwroot\src\ts\ui\DetailPanel.ts" />
-    <TypeScriptCompile Include="wwwroot\src\ts\ui\deviceUtils.ts" />
     <TypeScriptCompile Include="wwwroot\src\ts\ui\MenuPanel.ts" />
     <TypeScriptCompile Include="wwwroot\src\ts\ui\SelectionPanel.ts" />
   </ItemGroup>

@@ -35,6 +35,7 @@ export default class SelectionPanel {
 
     this.emptyDetails();
 
+    // Watch selected trail and replaces details with new ones.
     state.watch("selectedTrailId", (id) => {
       this.emptyDetails();
       if (id) {
@@ -42,15 +43,9 @@ export default class SelectionPanel {
         this.displayInfo(selectedTrail);
       }
     });
-
-    state.watch("device", () => {
-      if (!this.state.selectedTrailId) {
-        this.displayAppInfo();
-      }
-    });
-
   }
 
+  // Removes details
   emptyDetails() {
     domConstruct.empty(this.detailTitle);
     domConstruct.empty(this.detailDescription);
@@ -59,22 +54,20 @@ export default class SelectionPanel {
     this.displayAppInfo();
   }
 
+  // Message for when detail is not selected.
   displayAppInfo() {
-    if (this.state.device === "mobilePortrait") {
-      this.detailMeta.innerHTML = `<div class="col">This app shows hikes in Southern California. Select a hike on the map to find out more about it.</div>`;
-    } else {
-      this.detailMeta.innerHTML = `<div class="col">Select a hike in the map or in the Hikes panel to see more details about it.</div>`;
-    }
+    this.detailMeta.innerHTML = `<div class="col">Select a hike in the map or in the Hikes panel to see more details about it.</div>`;
   }
 
+  // Populates data when trail is slected.
   displayInfo(trail: Trail): void {
     this.detailTitle.innerHTML = `<h3 class="card-title">${trail.name}<h3>`;
     this.createTrailMeta(trail);
     this.detailDescription.innerHTML = `<p class="card-text">${trail.description}<p>`;
   }
 
+  // Populates trail meta.
   createTrailMeta(trail) {
-    console.log(trail);
     this.detailMeta.innerHTML = `
       ${ trail.ascent ? `<div class="col"><small class="text-muted">Ascent<br>${trail.ascent} ft</small></div>` : ""}
       ${ trail.walktime ? `<div class="col"><small class="text-muted">Time<br>${trail.walktime} hr</small></div>` : "" }
