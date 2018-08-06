@@ -1,106 +1,110 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+@{
+	ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Package Management" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Bring in libraries from NuGet and npm, and automate tasks using Grunt or Gulp.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525029&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner4.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+@section Scripts {
+	<!--load ArcGIS API for JavaScript-->
+	<script>
+		var dojoConfig = {
+			has: {
+				"esri-promise-compatibility": 1
+			},
+			async: true
+		};
+	</script>
+	<script type='text/javascript' rel=preload src='https://js.arcgis.com/4.7/'></script>
+	<script>
+		require(['./dist/main.bundle.js'], function (main) { });
+	</script>
+}
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
-    </div>
-</div>
+	<section class="row">
+		<aside class="col-4">
+			<div class="side-panel menuPanel">
+				<div class="row trail-nav mt-3 mb-3">
+					<div class="col-12">
+						<div class="menuTabs btn-group d-flex visible-panel pl-3 pr-3" role="group" aria-label="Trail Navigation">
+							<button type="button" class="btn btn-default w-100 btn-primary" data-tab='selectionPanel'>Hikes</button>
+							<button type="button" class="btn btn-default w-100" data-tab='detailPanel'>Details</button>
+						</div>
+					</div>
+				</div>
+				<div id='selectionPanel'>
+					<div id='trailsPanel'></div>
+					<div id='filterPanel'></div>
+				</div>
+				<div class="col-12 d-none" id='detailPanel'>
+					<div class="card mb-3">
+						<div class="card-body">
+							<div id="detailTitle"></div>
+							<div id="detailDescription"></div>
+							<div class="card-text row" id="detailMeta"></div>
+						</div>
+					</div>
+					@*<div class="row trail-reviews mb-3">
+			<div class="col-12">
+				<ul class="nav nav-tabs" style="margin-bottom: 15px">
+					<li role="presentation" class="nav-item">
+						<a class="nav-link active" href="#">Reviews</a>
+					</li>
+					<li role="presentation" class="nav-item">
+						<a class="nav-link" href="#">Photos</a>
+					</li>
+				</ul>
+				<p style="text-align: center;">
+					Share your experiences to help other people learn more about this trail:
+				</p>
+				<div style="margin-bottom: 15px; text-align:center;">
+					<button class="btn btn-primary" type="button">
+						Write Review
+					</button>
+					<button class="btn btn-primary" type="button">
+						Upload Photos
+					</button>
+				</div>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<a active" href="#">Newest First</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#">Oldest First</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#">Highest Rating</a>
+					</li>
+					<li class="list-inline-item">
+						<a href="#">Lowest Rating</a>
+					</li>
+				</ul>
+
+
+				<div class="card mb-3">
+					<div class="card-header">
+						Eddie Pantoja
+					</div>
+					<div class="card-body">
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+
+				<div class="card mb-3">
+					<div class="card-header">
+						Eddie Pantoja
+					</div>
+					<div class="card-body">
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+					</div>
+				</div>
+
+			</div>
+		</div>*@
+				</div>
+			</div>
+		</aside>
+		<div class="col-8 scene-container">
+			<div id='scenePanel'></div>
+			<div class="elevation-container d-none">
+				<div id='detailElevationProfile'></div>
+			</div>
+		</div>
+	</section>

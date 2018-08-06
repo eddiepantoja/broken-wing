@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -49,9 +49,9 @@ namespace So_Cal_Hiking_Trails
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
 
-                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {  
-                    HotModuleReplacement = true  
-                }); 
+                app.UseWebpackDevMiddleware(new WebpackDevMiddlewareOptions {
+                    HotModuleReplacement = true
+                });
             }
             else
             {
@@ -64,11 +64,6 @@ namespace So_Cal_Hiking_Trails
 
             app.UseMvc(routes =>
             {
-				routes.MapRoute(
-					name: "map",
-					template: "map/{action=Index}/{id?}",
-					defaults: new { controller = "Map" });
-
 				routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
