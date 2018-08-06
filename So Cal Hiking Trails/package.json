@@ -50,4 +50,5 @@
 		"nouislider": "^11.0.0"
 	}
 
+, "-vs-binding":{"AfterBuild":["start"]}
 }
