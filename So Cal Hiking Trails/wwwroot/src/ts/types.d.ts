@@ -28,6 +28,8 @@ export interface Trail {
   ascent: number;
   description: number;
   profileData: Array<Object>;
+  minElevation: number;
+  maxElevation: number;
   hasZ: boolean;
   setZValues: (view: SceneView) => IPromise;
   createFlickrLayer: () => IPromise;

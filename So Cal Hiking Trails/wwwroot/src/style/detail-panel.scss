@@ -1,2 +1,13 @@
-﻿body {
+﻿.elevation-container {
+	position: absolute;
+	bottom: 15px;
+	right: 0;
+	width: calc(100% - 30px);
+	margin-right: 15px;
+	background-color: rgba(0,0,0,.9);
+
+	#detailElevationProfile {
+		height: 25vh;
+		max-height: 300px;
+	}
 }

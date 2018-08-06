@@ -254,8 +254,7 @@ export default class SceneElement {
     );
 
     if (this.state.online) {
-      // TODO: show elevation
-      // selectedTrail.setElevationValuesFromService();
+      selectedTrail.setElevationValuesFromService();
     }
   }
 

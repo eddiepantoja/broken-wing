@@ -11,6 +11,8 @@ export default class Trail {
   profileData: Array<any>;
   segments: any;
   state: State;
+  minElevation: any;
+  maxElevation: any;
 
   constructor(feature, state) {
 
@@ -80,7 +82,16 @@ export default class Trail {
       }
       i = j;
     }
-    return [points, segments];
+    let x;
+    for (x = 0; x < points.length; x++) {
+      if (this.minElevation > points[x][2]) {
+        this.minElevation = points[x][2];
+      }
+      if (this.maxElevation < points[x][2]) {
+        this.maxElevation = points[x][2];
+      }
+    }
+    return [points, segments, this.minElevation, this.maxElevation];
   }
 
   private getLongestPath(): number[][] {

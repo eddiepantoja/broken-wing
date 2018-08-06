@@ -50,7 +50,8 @@ export default class SelectionPanel {
     domConstruct.empty(this.detailTitle);
     domConstruct.empty(this.detailDescription);
     domConstruct.empty(this.detailMeta);
-
+    domConstruct.empty(this.detailElevationProfile);
+    document.querySelector(".elevation-container").classList.add("d-none");
     this.displayAppInfo();
   }
 
@@ -68,12 +69,14 @@ export default class SelectionPanel {
     // Create elevation profile.
     // create the elevation profile
     if (trail.profileData) {
-      this.createChart(trail.profileData);
+      document.querySelector(".elevation-container").classList.remove("d-none");
+      this.createChart(trail.profileData, trail.minElevation, trail.maxElevation);
     } else {
       if (this.state.online) {
         trail.setElevationValuesFromService()
           .then(() => {
-            this.createChart(trail.profileData);
+            document.querySelector(".elevation-container").classList.remove("d-none");
+            this.createChart(trail.profileData, trail.minElevation, trail.maxElevation);
           });
       }
     }
@@ -87,8 +90,69 @@ export default class SelectionPanel {
     `;
   }
 
-  createChart(data) {
-    console.log(data);
+  createChart(data, minElevation, maxElevation) {
+    const min = (minElevation - 500 <= 0) ? 0 : minElevation - 500;
+    const max = maxElevation + 500;
+    const chart = AmCharts.makeChart(this.detailElevationProfile, {
+      type: "serial",
+      theme: "light",
+      dataProvider: data,
+      color: "#ffffff",
+      fontFamily: "Open Sans Condensed",
+      balloon: {
+        borderAlpha: 0,
+        fillAlpha: 0.8,
+        fillColor: config.colors.selectedTrail,
+        shadowAlpha: 0
+      },
+      graphs: [{
+        id: "g1",
+        balloonText: "Distance: <b>[[category]] km</b><br>Elevation:<b>[[value]] m</b>",
+        fillAlphas: 0.2,
+        bulletAlpha: 0,
+        lineColor: config.colors.selectedTrail,
+        lineThickness: 1,
+        valueField: "value"
+      }],
+      chartCursor: {
+        limitToGraph: "g1",
+        categoryBalloonEnabled: false,
+        zoomable: false
+      },
+      categoryField: "length",
+      categoryAxis: {
+        gridThickness: 0,
+        axisThickness: 0.1
+      },
+      valueAxes: [{
+        strictMinMax: true,
+        autoGridCount: false,
+        minimum: min,
+        maximum: max,
+        axisThickness: 0,
+        tickLength: 0
+      }]
+    });
+
+    const popup = this.state.view.popup;
+
+    chart.addListener("changed", (e) => {
+      if (e.index) {
+        const data = e.chart.dataProvider[e.index];
+        popup.dockEnabled = false;
+        popup.open({
+          title: data.value + " m",
+          location: new Point({
+            spatialReference: { wkid: 4326 },
+            longitude: data.point[0],
+            latitude: data.point[1],
+            z: data.point[2]
+          })
+        });
+      } else {
+        popup.close();
+      }
+    });
   }
 
 }
